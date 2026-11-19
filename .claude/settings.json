@@ -1,0 +1,19 @@
+{
+  "autoMemoryDirectory": ".claude/memory",
+  "sandbox": {
+    "enabled": false
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/start-dockerd.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

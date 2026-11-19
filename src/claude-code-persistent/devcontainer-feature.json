@@ -1,0 +1,51 @@
+{
+    "id": "claude-code-persistent",
+    "version": "0.1.1",
+    "name": "Claude Code Persistent",
+    "description": "Optinionated Claude Code installation: persist authentication, config, history and internal temp files across Dev Container rebuilds using a Docker volume.",
+    "documentationURL": "[https://github.com/iamchriswick/devcontainers/tree/features](https://github.com/iamchriswick/devcontainers/tree/features/src/claude-code-persistent/README)",
+    "options": {
+        "CCP_CONFDIR": {
+            "type": "boolean",
+            "description": "Persist the `~/.claude` directory (history, projects, settings)",
+            "default": true
+        },
+        "CCP_JSON": {
+            "type": "boolean",
+            "description": "Persist the `~/.claude.json` file (config)",
+            "default": true
+        },
+        "CCP_CRED": {
+            "type": "boolean",
+            "description": "Persist the `~/.claude/.credentials.json ` file (auth)",
+            "default": false
+        },
+        "CCP_TMPDIR": {
+            "type": "boolean",
+            "description": "Persist the Claude Code temp directory used for internal temp files. (scratchpad)",
+            "default": false
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "anthropic.claude-code"
+            ]
+        }
+    },
+    "installsAfter": [
+		"ghcr.io/devcontainers/features/common-utils",        
+		"ghcr.io/devcontainers/features/git",
+		"ghcr.io/devcontainers/features/github-cli",
+		"ghcr.io/anthropics/devcontainer-features/claude-code",
+    ],
+    "mounts": [
+        {
+            "source": "claude-code-persistent",
+            "target": "/mnt/devcontainers/features/claude-code-persistent",
+			"type": "volume"
+		}
+	],
+	"onCreateCommand": "/usr/local/share/devcontainers/features/claude-code-persistent/hooks/onCreate.sh",
+	"updateContentCommand": "/usr/local/share/devcontainers/features/claude-code-persistent/hooks/updateContent.sh"
+}

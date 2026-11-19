@@ -1,0 +1,53 @@
+{
+    "defaults": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian",
+        "features": {
+            "claude-code-persistent": {}
+        }
+    },
+    "ubuntu": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "claude-code-persistent": {}
+        }
+    },
+    "non_root_user": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "ghcr.io/devcontainers/features/common-utils:1": {
+                "installZsh": false,
+                "installOhMyZsh": false,
+                "upgradePackages": false,
+                "username": "octocat"
+            },
+            "claude-code-persistent": {}
+        },
+        "remoteUser": "octocat"
+    },
+    "confdir_off": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian",
+        "features": {
+            "claude-code-persistent": {
+                "CCP_CONFDIR": false,
+                "CCP_JSON": true,
+                "CCP_CRED": true
+            }
+        }
+    },
+    "tmpdir_on": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian",
+        "features": {
+            "claude-code-persistent": {
+                "CCP_TMPDIR": true
+            }
+        }
+    },
+    "preinstalled": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian",
+        "features": {
+            "ghcr.io/devcontainers/features/node:1": {},
+            "ghcr.io/anthropics/devcontainer-features/claude-code:1": {},
+            "claude-code-persistent": {}
+        }
+    }
+}
